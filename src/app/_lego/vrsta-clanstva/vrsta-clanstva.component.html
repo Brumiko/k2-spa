@@ -1,0 +1,10 @@
+<div class="form-group" [formGroup]="ref">
+    <label for="membershipType">Vrsta članstva</label>
+    <select class="form-control" formControlName="membershipType" required>
+        <option value="" disabled>Odaberite...</option>
+        <option *ngFor="let item of katalog" [ngValue]="item.ozn">{{ item.naziv }}</option>
+    </select>
+    <div *ngIf="ref.controls['membershipType'].errors && (ref.controls['membershipType'].touched || ref.controls['membershipType'].dirty)"  class="alert alert-warning text-danger small">
+        <div>Morate odabrati vrstu članstva za kojeg podnosite zahtjev.</div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="floating-alert">
+    <div class="container">
+        <div *ngFor="let alert of alertLST" class="col-sm-12">
+            <ngb-alert [type]="alert.type" (close)="closeAlert(alert)">
+                <div>{{ alert.message }}</div>
+                <div *ngIf="alert.isHttpAlert">
+                    <ul *ngIf="alert.details">
+                        <li *ngFor="let detail of alert.details">{{ detail.key }}: {{ detail.description }}</li>
+                    </ul>
+                </div>
+            </ngb-alert>
+        </div>
+    </div>
+</div>

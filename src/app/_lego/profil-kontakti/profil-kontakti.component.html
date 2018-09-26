@@ -1,0 +1,51 @@
+<div class="table-responsive-sm mt-4">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <table class="table">
+            <caption>Popis kontakata</caption>
+            <thead class="thead-light">
+                <th scope="col" style="width:25%;">Vrsta</th>
+                <th scope="col">Sadržaj</th>
+                <th style="width: 9%;"></th>
+                <th style="width: 9%;"></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let kontakt of kontaktLST; let i=index" [ngClass]="i%2 == 1 ? 'alt-row': ''">
+                    <td>{{ kontakt.vrsta_value }}</td>
+                    <td>{{ kontakt.sadrzaj }}</td>
+                    <td>
+                        <button (click)="onEdit(kontakt.id)" class="btn btn-primary btn-sm btn-block mr-1"
+                            type="button">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button (click)="onDelete(kontakt.id)" class="btn btn-secondary btn-sm btn-block"
+                            type="button">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <app-vrsta-kontakta [ref]="form.controls['contactType']" [shownInTable]="true"></app-vrsta-kontakta>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <input type="text" formControlName="contactContent" required maxlength="80" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && f.contactContent.errors }" placeholder="Upišite kontakt.">
+                            <div *ngIf="form.controls['contactContent'].errors && (form.controls['contactContent'].touched || form.controls['contactContent'].dirty)"
+                                class="alert alert-warning text-danger small">
+                                <div>Podaci o kontaktu su obavezni (do 80 znakova).</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td colspan="2">
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || loading">
+                            <i class="fa fa-download"></i> Spremi
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

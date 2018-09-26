@@ -1,0 +1,46 @@
+<div class="bg-light border border-white">
+    <h3 class="bg-primary text-light p-2">{{ naslov }}</h3>
+    <div class="p-2">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <app-nkz-autocomplete [ref]="form.controls['nkzAutocomplete']"></app-nkz-autocomplete>
+            </div>
+            <div class="form-group">
+                <app-po-autocomplete [ref]="form.controls['poAutocomplete']"></app-po-autocomplete>
+            </div>
+            <div class="form-group">
+                <label for="startDate">Početak rada</label>
+                <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }">
+                    <input class="form-control" formControlName="startDate" required ngbDatepicker #radMjeDatOd="ngbDatepicker" maxlength="10" placeholder="gggg-mm-dd">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary fa fa-calendar" (click)="radMjeDatOd.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <div *ngIf="form.controls['startDate'].errors && (form.controls['startDate'].touched || form.controls['startDate'].dirty)" class="alert alert-warning text-danger small">
+                    <div>Morate odrediti početni datum zaposlenja.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="endDate">Kraj rada</label>
+                <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }">
+                    <input class="form-control" formControlName="endDate" ngbDatepicker #radMjeDatDo="ngbDatepicker" maxlength="10" minDate="" placeholder="gggg-mm-dd" >
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" (click)="radMjeDatDo.toggle()" type="button"></button>
+                    </div>
+                </div>
+                <div *ngIf="form.controls['endDate'].errors && (form.controls['endDate'].touched || form.controls['endDate'].dirty)" class="alert alert-warning text-danger small">
+                    <!--<div>TODO: završni datum ne može biti manji od početnoga.</div>-->
+                    <div>Ispravan format datuma je gggg-mm-dd.</div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary col-4" [disabled]="form.invalid || loading" (click)="onSave()">
+                    <i class="fa fa-download"></i>&nbsp;Spremi&nbsp;<i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                </button>
+                <button type="button" class="btn btn-secondary col-4" (click)="onCancel('ODUSTAJANJE')">
+                    <i class="fa fa-times"></i>&nbsp;Odustani
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

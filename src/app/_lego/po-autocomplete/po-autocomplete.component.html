@@ -1,0 +1,23 @@
+<div class="form-group" [formGroup]=ref>
+    <label for="poAutocomplete">Tvrtka ili ustanova zaposlenja</label>    
+    <input type="text" formControlName="poAutocomplete" required 
+        [ngbTypeahead]="search"
+        [resultFormatter]="resultFormatter" 
+        [inputFormatter]="inputFormatter" 
+        class="form-control" 
+        [ngClass]="{ 'is-invalid': searchFailed }" 
+        placeholder="Odaberite poslodavca..."
+    />
+    <div *ngIf="searching" class="form-control-plaintext text-info font-weight-bold">
+        <i class="fa fa-spinner fa-spin"></i> Tražim...
+    </div>
+    <div *ngIf="ref.controls['poAutocomplete'].errors && (ref.controls['poAutocomplete'].touched || ref.controls['poAutocomplete'].dirty) || searchFailed" class="alert alert-warning text-danger small">
+        <div *ngIf="ref.controls['poAutocomplete'].errors && (ref.controls['poAutocomplete'].touched || ref.controls['poAutocomplete'].dirty)">
+            Morate odabrati poslodavca.
+        </div>
+        <div *ngIf="searchFailed">
+            Odabir tvrtke ili ustanove je trenutno nedostupan.
+        </div>
+    </div>
+    <!--{{ 'ID: ' + selectedKey }}-->
+</div>

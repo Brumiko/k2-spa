@@ -1,0 +1,10 @@
+<div class="form-group" [formGroup]="ref">
+    <label *ngIf="!shownInTable" for="contactType">Vrsta kontakta</label>
+    <select class="form-control" formControlName="contactType" required>
+        <option value="" disabled>Odaberite...</option>
+        <option *ngFor="let item of katalog" [ngValue]="item.ozn">{{ item.naziv }}</option>
+    </select>
+    <div *ngIf="ref.controls['contactType'].errors && (ref.controls['contactType'].touched || ref.controls['contactType'].dirty)"  class="alert alert-warning text-danger small">
+        <div>Vrsta kontakta je obavezna.</div>
+    </div>
+</div>

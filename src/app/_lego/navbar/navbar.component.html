@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['']">HVK</a>
+        <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed"
+            aria-controls="tajNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="tajNavbar" [ngbCollapse]="navbarCollapsed" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/naslovnica']" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-home"></i> Naslovna
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/novosti']" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-newspaper-o"></i> Novosti
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="!currentUser">
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/prijava']" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-sign-in"></i> PIS HVK
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/profil']" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-user-circle"></i> MOJE ČLANSTVO
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="!currentUser">
+                    <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/registracija']" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-user-plus"></i> Zahtjev za članstvo
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="currentUser">
+                    <button type="button" class="btn btn-link nav-link" (click)="logout()" (click)="navbarCollapsed = !navbarCollapsed">
+                        <i class="fa fa-sign-out"></i> Odjava
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

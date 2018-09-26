@@ -1,0 +1,19 @@
+<div class="table-responsive-sm mt-4">
+    <table *ngIf="clanstvoLST" class="table table-stripped">
+        <caption>Kronološka povijest članstva</caption>
+        <thead class="thead-light">
+            <th scope="col">Vrsta članstva</th>
+            <th scope="col">Početak</th>
+            <th scope="col">Kraj</th>
+            <th scope="col">Razlog prestanka</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let clanstvo of clanstvoLST; let i=index" [ngClass]="i%2 == 1 ? 'alt-row': ''">
+                <td>{{ clanstvo.vrsta_clanstva_value }}</td>
+                <td>{{ clanstvo.dat_od }}</td>
+                <td>{{ clanstvo.dat_do ? clanstvo.dat_do : '-'}}</td>
+                <td>{{ clanstvo.prestanak_cl ? clanstvo.prestanak_cl_value : '-' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

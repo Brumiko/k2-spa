@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-sm-6 mt-4">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <fieldset class="fieldset">
+                <legend class="fieldset legend">Portret</legend>
+                <div class="form-group">
+                    <label for="file">Odaberite i pošaljite portret...</label>
+                    <input type="file" formControlName="file" required (change)="onFileChange($event)" accept=".jpg,.jpeg" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.file.errors }">
+                    <div *ngIf="form.controls['file'].errors && (form.controls['file'].touched || form.controls['file'].dirty)" class="alert alert-warning text-danger small">
+                        <div>Morate odabrati sliku.</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary col-6 mt-4" [disabled]="form.invalid || loading">
+                        <i class="fa fa-upload"></i> Pošalji portret <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                    </button>
+                </div>
+                <div class="form-group mt-2" *ngIf="clan.slika">
+                    <div class="form-control-plaintext">...ili:</div>
+                    <button type="button" class="btn btn-secondary col-6" (click)="onDelete()">
+                        <i class="fa fa-trash"></i> Izbriši trenutni portret
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-sm-6 mt-4">
+        <fieldset class="fieldset">
+            <legend class="fieldset legend">Autentikacijski podaci</legend>
+            <div class="form-group">
+                <div class="form-control-plaintext">Korisničko ime</div>
+                <div class="form-control-plaintext font-weight-bold">{{ clan.py_user }}</div>
+            </div>
+            <div class="form-group">
+                <div class="form-control-plaintext">E-adresa pri podnošenju zahtjeva</div>
+                <div class="form-control-plaintext font-weight-bold">{{ clan.email }}</div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 mt-4">
+        <fieldset class="fieldset">
+            <legend class="fieldset legend">Osobni podaci</legend>
+            <div class="form-group">
+                <div class="form-control-plaintext">OIB</div>
+                <div class="form-control-plaintext font-weight-bold">{{ clan.oib }}</div>
+            </div>
+            <div class="form-group">
+                <div class="form-control-plaintext">Datum rođenja</div>
+                <div class="form-control-plaintext font-weight-bold">{{ clan.dat_rod }}</div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-sm-6 mt-4">
+        <fieldset class="fieldset">
+            <legend class="fieldset legend">Adrese</legend>
+                <div *ngFor="let mjesto of mjesnostLST" class="form-group">
+                    <div class="form-control-plaintext">{{ mjesto.vrsta_value | uppercase }}</div>
+                    <div class="form-control-plaintext font-weight-bold">{{ mjesto.mjesto_detail.mjesto_naziv }}</div>
+                    <div class="form-control-plaintext font-weight-bold">{{ mjesto.adresa }}</div>
+                    <div class="form-control-plaintext font-weight-bold small">Općina {{ mjesto.mjesto_detail.mjesto_opcina_value }}</div>
+                    <div class="form-control-plaintext font-weight-bold small">{{ mjesto.mjesto_detail.mjesto_zupanija_value }} županija</div>
+                </div>
+        </fieldset>
+    </div>
+</div>

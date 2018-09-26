@@ -1,0 +1,61 @@
+<div *ngIf="clan" class="jumbotron jumbotron-fluid p-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="{{ clan.slika ? clan.slika : imgPlaceholder }}/?x={{ ts }}" alt="{{ clan.py_user }}" class="img-fluid img-thumbnail">
+            </div>
+            <div class="col-sm-10">
+                <h2><small>{{ clan.spol === 'm' ? 'g.' : 'gđa.' }} {{ clan.ime + ' ' + clan.prezime }}</small></h2>
+                <div class="small text-danger" *ngIf="!clan.aktivno_clanstvo">ČLANSTVO NIJE AKTIVNO</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="clan" class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <ngb-tabset #tabset [activeId]="selectedTab" (tabChange)="onTabChange($event)">
+                <ngb-tab id="naslovnica">
+                    <ng-template ngbTabTitle>
+                        <a [routerLink]="['/profil', 'naslovnica']">
+                            <i class="fa fa-user"></i> Osnovno
+                        </a>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <app-profil-osnovno [clan]="clan" [loadData]="dohvatNaslovnice" (onImageChange)="onImageChange($event)"></app-profil-osnovno>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="clanstvo">
+                    <ng-template ngbTabTitle>
+                        <a [routerLink]="['/profil', 'clanstvo']">
+                            <i class="fa fa-certificate"></i> Članstvo
+                        </a>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <app-profil-clanstvo [clan]="clan" [loadData]="dohvatClanstva"></app-profil-clanstvo>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="kontakti">
+                    <ng-template ngbTabTitle>
+                        <a [routerLink]="['/profil', 'kontakti']">
+                            <i class="fa fa-address-book"></i> Kontakti
+                        </a>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <app-profil-kontakti [clan]="clan" [loadData]="dohvatKontakata"></app-profil-kontakti>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab id="radna-mjesta">
+                    <ng-template ngbTabTitle>
+                        <a [routerLink]="['/profil', 'radna-mjesta']">
+                            <i class="fa fa-hospital-o"></i> Radna mjesta
+                        </a>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <app-profil-rad-mje [clan]="clan" [loadData]="dohvatRadMje"></app-profil-rad-mje>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>
