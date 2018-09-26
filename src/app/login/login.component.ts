@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         this.authSVC.login(this.f.username.value, this.f.password.value).subscribe(
             data => {
+                //this.alertSVC.success("Uspješno ste se prijavili.", true);
                 this.router.navigate([this.returnUrl]);
             },
             error => {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../_services/auth/authentication.service';
 import { AlertService } from '../../_services/local/alert.service';
@@ -30,9 +29,13 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         this.loading = true;
-        this.alertSVC.clear();
+        //this.alertSVC.clear();
+        this.authSVC.logout();
+        this.router.navigate(['/naslovnica']);
+        /*
         this.authSVC.logout().subscribe(
             data => {
+                this.userChanged(null);
                 this.router.navigate(['/home']);
             },
             error => {
@@ -40,5 +43,6 @@ export class NavbarComponent implements OnInit {
                 this.loading = false;
             }
         );
+        */
     }
 }

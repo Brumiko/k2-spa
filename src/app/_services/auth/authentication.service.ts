@@ -29,10 +29,15 @@ export class AuthenticationService {
 
     logout() { // POST: nikaj
         localStorage.removeItem('currentUser');
+        this.newLogin.emit(null);
+        /*
         return this.http.post<any>(`${conf.REST_AUTH_URL}${conf.RA_LOGOUT}`, '', conf.HTTP_OPTIONS_JSON).pipe(
-            tap(_ => {
+            tap(data => {
                 this.newLogin.emit(null);
             })
         );
+        */
+       // Opcionalno, ako prođe - prođe.
+       this.http.post<any>(`${conf.REST_AUTH_URL}${conf.RA_LOGOUT}`, '', conf.HTTP_OPTIONS_JSON);
     }
 }

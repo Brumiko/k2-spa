@@ -10,6 +10,6 @@ export class AuthGuard implements CanActivate {
         if (localStorage.getItem('currentUser')) {
             return true; // Korisnik je prijavljen, ruta može biti aktivirana.
         }
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }}); // Korisnika se preusmjerava na login uz postavljanje post-prijavnog URL-a.
+        this.router.navigate(['/prijava'], { queryParams: { returnUrl: state.url }}); // Korisnika se preusmjerava na login uz postavljanje post-prijavnog URL-a.
     }
 }

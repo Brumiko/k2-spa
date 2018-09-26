@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
         this.registrationSVC.register(user).subscribe(
             data => {
                 this.alertSVC.success('Prijava za članstvo je uspješno podnesena.', true);
-                this.router.navigate(['/login']);
+                this.router.navigate(['/prijava']);
             },
             error => {
                 this.alertSVC.error(error);

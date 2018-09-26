@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -7,9 +7,6 @@ import { AlertTypeEnum } from '../../_models/local/alert-type.enum';
 import { AlertService } from '../../_services/local/alert.service';
 import { HttpAlert } from '../../_models/local/http-alert.model';
 import { ServerError } from '../../_models/local/server-error.model';
-import { AuthenticationService } from '../../_services/auth/authentication.service';
-import { Router } from '@angular/router';
-
 
 @Component({
     selector: 'app-alert',
@@ -22,11 +19,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
     get alertTypeEnum() { return AlertTypeEnum; }
 
-    constructor(
-        private alertSVC: AlertService, 
-        private authSVC: AuthenticationService, 
-        private router: Router
-    ) { }
+    constructor(private alertSVC: AlertService) { }
 
     ngOnInit() {
         this.subscription = this.alertSVC.getAlert().subscribe(alert => {
@@ -53,18 +46,14 @@ export class AlertComponent implements OnInit, OnDestroy {
 
                     this.alertLST.push(
                         new HttpAlert(
-                            alert.result.status === 401 ? AlertTypeEnum.PRIMARY : AlertTypeEnum.WARNING,
-                            alert.result.status === 401 ? "Prijava je istekla. Prijavite se opet ako želite nastaviti posao." : alert.result.message,
+                            AlertTypeEnum.WARNING,
+                            alert.result.message,
                             alert.result.status,
                             alert.result.statusText,
                             alert.result.url,
                             this.serverErrorLST
                         )
                     );
-                    if (alert.result.status === 401) {
-                        this.authSVC.logout();
-                        this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.routerState.snapshot.url }});
-                    }
                 }
             } else {
                 this.alertLST.push(new Alert(AlertTypeEnum.PRIMARY, alert.result));
