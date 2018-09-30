@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
 import { of, Observable } from 'rxjs';
+
+import { environment } from '../../../environments/environment';
 import { PO } from '../../_models/hvk/po.model';
-import { conf } from '../../conf';
 
 @Injectable({
     providedIn: 'root'
@@ -22,6 +24,6 @@ export class PoAutocompleteService {
         this.debugPoLST.subscribe(item => console.log(item));
         return this.debugPoLST;
         */
-        return this.http.get<PO[]>(`${conf.HVK_WEB_API_URL}${this.AUTOCOMPLETE_PATH}${term}`);
+        return this.http.get<PO[]>(`${environment.HVK_WEB_API_URL}${this.AUTOCOMPLETE_PATH}${term}`);
     }
 }

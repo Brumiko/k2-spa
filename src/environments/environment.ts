@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    REST_AUTH_URL: 'http://localhost:8000/rest-auth/',
+    HVK_WEB_API_URL: "http://localhost:8000/api/",
+    REFRESH_TOKEN_URL: 'http://localhost:8000/refresh-token/',
 };
 
 /*

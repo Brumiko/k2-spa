@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
             username: '',
             password: ''
         });
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/profile';
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/profil';
     }
 
     onSubmit() {

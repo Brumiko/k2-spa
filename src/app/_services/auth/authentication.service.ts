@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Output, EventEmitter } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+
+import { map } from 'rxjs/operators';
 
 import { conf } from '../../conf';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +15,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
 
     login(username: string, password: string) { // POST: username ili email, password; token, user (pk, username, first_name "", last_name "")
-        return this.http.post<any>(`${conf.REST_AUTH_URL}${conf.RA_LOGIN}`, { username: username, password: password }, conf.HTTP_OPTIONS_JSON).pipe(
+        return this.http.post<any>(`${environment.REST_AUTH_URL}${conf.RA_LOGIN}`, { username: username, password: password }, conf.HTTP_OPTIONS_JSON).pipe(
             map(currentUser => {
                 if (currentUser && currentUser.token) {
                     localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -38,6 +40,6 @@ export class AuthenticationService {
         );
         */
        // Opcionalno, ako prođe - prođe.
-       this.http.post<any>(`${conf.REST_AUTH_URL}${conf.RA_LOGOUT}`, '', conf.HTTP_OPTIONS_JSON);
+       this.http.post<any>(`${environment.REST_AUTH_URL}${conf.RA_LOGOUT}`, '', conf.HTTP_OPTIONS_JSON);
     }
 }

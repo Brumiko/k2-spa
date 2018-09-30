@@ -18,8 +18,6 @@ export const conf = {
         ),
     },
     */
-
-    REST_AUTH_URL: 'http://localhost:8000/rest-auth/',
     // https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html
     RA_LOGIN: 'login/',
     RA_LOGOUT: 'logout/',
@@ -28,7 +26,4 @@ export const conf = {
     RA_PWD_CHANGE: 'password/change/',            // POST: new_password1, new_password2, old_password
     RA_USER: 'user/',                             // GET, PUT, PATCH: username, first_name, last_name; pk, username, first_name, last_name
     RA_REGISTER: 'registration/',
-    REFRESH_TOKEN_URL: 'http://localhost:8000/refresh-token/',
-
-    HVK_WEB_API_URL: "http://localhost:8000/api/",
 }
