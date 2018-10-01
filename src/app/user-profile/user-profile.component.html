@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-2">
-                <img src="{{ clan.slika ? clan.slika : imgPlaceholder }}/?x={{ ts }}" alt="{{ clan.py_user }}" class="img-fluid img-thumbnail">
+                <img src="{{ clan.slika ? clan.slika : imgPlaceholder }}?x={{ ts }}" alt="{{ clan.py_user }}" class="img-fluid img-thumbnail">
             </div>
             <div class="col-sm-10">
                 <h2><small>{{ clan.spol === 'm' ? 'g.' : 'gđa.' }} {{ clan.ime + ' ' + clan.prezime }}</small></h2>
