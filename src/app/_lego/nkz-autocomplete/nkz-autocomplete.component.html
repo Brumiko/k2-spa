@@ -1,8 +1,8 @@
 <div class="form-group" [formGroup]=ref>
     <label for="nkzAutocomplete">Radno mjesto po NKZ</label>
     <input type="text" formControlName="nkzAutocomplete" required [ngbTypeahead]="search" 
-        [resultFormatter]="formatter"
-        [inputFormatter]="formatter" 
+        [resultFormatter]="resultFormatter"
+        [inputFormatter]="inputFormatter" 
         class="form-control" 
         [ngClass]="{ 'is-invalid': searchFailed }"
         placeholder="Odaberite zanimanje..." />

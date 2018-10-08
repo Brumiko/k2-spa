@@ -13,7 +13,7 @@
                 <div class="form-control-plaintext">Radno mjesto po NKZ</div>
                 <div class="form-control-plaintext font-weight-bold">{{ radMje.nkz }} {{ radMje.nkz_value }}</div>
                 <div class="form-control-plaintext">Tvrtka ili ustanova zaposlenja</div>
-                <div class="form-control-plaintext font-weight-bold">{{ radMje.po_detail.po_naziv }}, OIB:{{ radMje.po_detail.po_oib }}</div>
+                <div class="form-control-plaintext font-weight-bold">{{ radMje.po_detail.po_naziv }}, OIB: {{ radMje.po_detail.po_oib }}</div>
                 <div class="d-flex justify-content-between">
                     <button type="button" class="btn btn-primary col-4" (click)="onEdit(radMje)">
                         <i class="fa fa-edit"></i>&nbsp;Uredi...

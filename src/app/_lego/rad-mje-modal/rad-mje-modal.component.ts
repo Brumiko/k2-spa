@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { NgbTypeaheadConfig, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadConfig, NgbActiveModal, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RadnoMjesto } from '../../_models/hvk/radno-mjesto.model';
 import { RadnoMjestoService } from '../../_services/hvk/radno-mjesto.service';
 import { Clan } from '../../_models/hvk/clan.model';
@@ -12,6 +12,7 @@ import { PO } from '../../_models/hvk/po.model';
 @Component({
     selector: 'app-rad-mje-modal',
     templateUrl: './rad-mje-modal.component.html',
+    providers: [NgbDatepickerConfig]
 })
 export class RadMjeModalComponent implements OnInit {
     @Input() clan: Clan;            // UVIJEK.
@@ -30,8 +31,13 @@ export class RadMjeModalComponent implements OnInit {
         private alertSVC: AlertService,
         private formBuilder: FormBuilder,
         private radMjeSVC: RadnoMjestoService,
+        private dateConf: NgbDatepickerConfig,
         private typeaheadConf: NgbTypeaheadConfig,
     ) {
+        dateConf.minDate = { year: 1900, month: 1, day: 1 };
+        let currentTime = new Date();
+        dateConf.maxDate = { year: currentTime.getFullYear(), month: currentTime.getMonth() + 1, day: currentTime.getDate() }
+        
         typeaheadConf.editable = false;
         typeaheadConf.showHint = true;
     }

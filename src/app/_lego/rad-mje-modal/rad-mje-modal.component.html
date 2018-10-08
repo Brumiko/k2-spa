@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label for="endDate">Kraj rada</label>
                 <div class="input-group" [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }">
-                    <input class="form-control" formControlName="endDate" ngbDatepicker #radMjeDatDo="ngbDatepicker" maxlength="10" minDate="" placeholder="gggg-mm-dd" >
+                    <input class="form-control" formControlName="endDate" ngbDatepicker #radMjeDatDo="ngbDatepicker" maxlength="10" placeholder="gggg-mm-dd" >
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary fa fa-calendar" (click)="radMjeDatDo.toggle()" type="button"></button>
                     </div>

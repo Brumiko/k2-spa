@@ -35,10 +35,18 @@ export class NkzAutocompleteComponent {
         tap(() => this.searching = false)
     );
 
-    formatter = (item: Katalog) => {
+    inputFormatter = (item: Katalog) => {
+        if (item) {
+            return item.naziv;
+        } else {
+            return '';
+        }
+    };
+
+    resultFormatter = (item: Katalog) => {
         if (item) {
             if (item) {
-                return `${item.ozn} ${item.naziv}`;
+                return ` ${item.ozn} ${item.naziv}`;
             } else {
                 return '';
             }
