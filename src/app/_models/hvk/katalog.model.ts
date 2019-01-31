@@ -3,6 +3,7 @@
 // - vrsta kontakta
 
 export class Katalog {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     ozn: string;
     naziv: string;
 

@@ -1,7 +1,7 @@
 import { Link } from "./link.model";
 
 export class Clan {
-    // Nazivi svojstava su KAO POLJA u WEB API-ju.
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     py_user: string;
     oib: string;
     spol: string;

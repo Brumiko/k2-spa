@@ -1,4 +1,5 @@
 export class PO {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     id: number;
     vrsta?: string;
     vrsta_value?: string;

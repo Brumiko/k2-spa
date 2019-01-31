@@ -1,6 +1,7 @@
 import { Link } from "./link.model";
 
 export class KontaktCl {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     id?: number;
     vrsta: string;
     vrsta_value?: string;

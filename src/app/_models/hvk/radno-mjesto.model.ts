@@ -1,6 +1,7 @@
 import { Link } from "./link.model";
 
 export class RadnoMjesto {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     id?: number;
     nkz: string;
     nkz_value?: string;

@@ -1,4 +1,5 @@
 export class MjesnostCl {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     vrsta: string;
     vrsta_value: string;
     mjesto: string;

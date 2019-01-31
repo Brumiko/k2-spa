@@ -6,6 +6,9 @@ import { of, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { PO } from '../../_models/hvk/po.model';
 
+/**
+ * Servis za pretragu pravnih osoba.
+ */
 @Injectable({
     providedIn: 'root'
 })
@@ -15,6 +18,10 @@ export class PoAutocompleteService {
 
     constructor(private http: HttpClient) { }
 
+    /**
+     * Dohvaća (GET) popis pravnih osoba po dijelu naziva ako dio naziva sadrži barem dva znaka.
+     * @param term Dio naziva pravne osobe.
+     */
     search(term: string): Observable<PO[]> {
         if (term.length < 2) {
             return of([]);

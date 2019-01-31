@@ -1,3 +1,6 @@
+/**
+ * Pobrojavanje vrsta upozorenja.
+ */
 export enum AlertTypeEnum {
     SUCCESS = 'success',
     INFO = 'info',

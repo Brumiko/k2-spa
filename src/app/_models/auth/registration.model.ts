@@ -1,3 +1,7 @@
+/**
+ * Podatkovni model za registraciju korisnika uz simulaciju provjere podataka u MUP-u.
+ * Nazivi svojstava (properties) jednaki su nazivima atributa na odgovarajućoj metodi u Web-API-ju
+ */
 export class Registration {
     // Nazivi svojstava su KAO POLJA u WEB API-ju.
     username: string;

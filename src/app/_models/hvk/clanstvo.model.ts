@@ -1,4 +1,5 @@
 export class Clanstvo {
+    // Nazivi svojstava (properties) su KAO POLJA u WEB API-ju.
     vrsta_clanstva: string;
     vrsta_clanstva_value: string;
     dat_od: Date;
