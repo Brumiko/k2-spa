@@ -6,7 +6,8 @@ import { environment } from '../../../environments/environment';
 import { Registration } from '../../_models/auth/registration.model';
 
 /**
- * Registracijski servis.
+ * Prilagođeni registracijski servis.
+ * Uz klasične registracijske radnje, obavlja provjeru podataka na simuliranom MUP-ovom web-servisu.
  */
 @Injectable({
     providedIn: 'root'

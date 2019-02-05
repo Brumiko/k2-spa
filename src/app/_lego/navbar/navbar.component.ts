@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services/auth/authentication.service';
 import { AlertService } from '../../_services/local/alert.service';
 
+/**
+ * Komponenta za prikaz navigacijske trake, uključivo i statusa prijave i odjave.
+ */
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -20,11 +23,12 @@ export class NavbarComponent implements OnInit {
     constructor(private authSVC: AuthenticationService, private alertSVC: AlertService, private router: Router) {
         // Prema:
         // https://stackoverflow.com/questions/42987293/refresh-header-after-login-in-angular2
-        authSVC.newLogin.subscribe(username => this.userChanged(username));
+        // Pretplata na emitiranje događaja prijave i odjave Autentikacijskoga servisa.
+        authSVC.newLogin.subscribe(username => this.userChanged(username)); 
     }
 
     ngOnInit() {
-        this.currentUser = localStorage.getItem('currentUser');
+        this.currentUser = localStorage.getItem('currentUser'); // Dohvat autentikacijskoga tokena iz lokalnog spremišta.
     }
 
     logout() {
