@@ -6,6 +6,9 @@ import { RadnoMjestoService } from '../../_services/hvk/radno-mjesto.service';
 import { AlertService } from '../../_services/local/alert.service';
 import { RadMjeModalComponent } from '../rad-mje-modal/rad-mje-modal.component';
 
+/**
+ * Komponenta za prikaz radnih mjesta.
+ */
 @Component({
     selector: 'app-profil-rad-mje',
     templateUrl: './profil-rad-mje.component.html',
@@ -34,6 +37,11 @@ export class ProfilRadMjeComponent implements OnInit {
         }
     }
 
+    /**
+     * Poziva modalno sučelje za upis ili ažuriranje radnog mjesta.
+     * Otvara modal u načinu za upis, tj. prazan.
+     * Po završetku upisa (u modalu) ažurira popis radnih mjesta i sortira ga silazno po datumu početka rada. 
+     */
     onAdd() {
         const modalRef = this.modalSVC.open(RadMjeModalComponent, { centered: true, size: 'lg' });
         modalRef.componentInstance.clan = this.clan;
@@ -64,6 +72,12 @@ export class ProfilRadMjeComponent implements OnInit {
         );
     }
 
+    /**
+     * Poziva modalno sučelje za upis ili ažuriranje radnog mjesta.
+     * Otvara modal u načinu za ažuriranje, tj. popunjenog podacima.
+     * Po završetku ažuriranja (u modalu) ažurira prikazani popis radnih mjesta i sortira ga silazno po datumu početka rada. 
+     * @param radMje Radno mjesto za ažuriranje.
+     */
     onEdit(radMje) {
         const modalRef = this.modalSVC.open(RadMjeModalComponent, { centered: true, size: 'lg' });
         modalRef.componentInstance.clan = this.clan;
@@ -93,6 +107,10 @@ export class ProfilRadMjeComponent implements OnInit {
         );
     }
 
+    /**
+     * Briše određeno radno mjesto.
+     * @param id ID radnog mjesta koje treba pobrisati.
+     */
     onDelete(id: number) {
         this.loading = true;
         this.radMjeSVC.deleteRadnoMjesto(this.clan.py_user, id).subscribe(
@@ -102,6 +120,10 @@ export class ProfilRadMjeComponent implements OnInit {
         this.loading = false;
     }
 
+    /**
+     * Dohvaća uzrok zatvaranja modala za upis i ažuriranje, npr. klik na ESCAPE ili na pozadinu.
+     * @param reason Uzrok zatvaranja modala.
+     */
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'Escape';
